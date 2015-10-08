@@ -1,0 +1,14 @@
+apply plugin: 'checkstyle'
+
+task checkstyle(type: Checkstyle) {
+    configFile file("${project.rootDir}/config/checkstyle/checkstyle.xml")
+    source 'src/main'
+    include '**/*.java'
+    reports {
+        xml {
+            destination "${project.projectDir}/build/reports/checkstyle/checkstyle.xml"
+        }
+    }
+    classpath = files()
+}
+check.dependsOn 'checkstyle'
